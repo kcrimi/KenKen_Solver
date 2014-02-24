@@ -1,5 +1,8 @@
 import java.util.Arrays;
 
+/*
+ * Basic datastructure of a cell in the KenKen puzzle
+ */
 public class Cell
 {
   Cage cage;
@@ -14,6 +17,9 @@ public class Cell
     this.nextCell = null;
   }
   
+  /*
+   * Explores the possible values of the cell
+   */
   public void explore(int[] paramArrayOfInt1, int[] paramArrayOfInt2)
   {
     for (int k : paramArrayOfInt2) {

@@ -9,8 +9,9 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 /*
- * This solver completes 
+ * This solver completes a KenKen puzzle from a text file that contains the constraints of the puzzle's cages
  */
+
 public class KenKenPuzzleSolver
 {
   public Cell[] cells;
@@ -23,6 +24,9 @@ public class KenKenPuzzleSolver
   int[] possibles;
   static PrintStream out;
   
+  /*
+   * Set up a new puzzle
+   */
   public KenKenPuzzleSolver(String[] paramArrayOfString)
   {
     try
@@ -47,6 +51,9 @@ public class KenKenPuzzleSolver
     this.rootCell.explore(this.choice, arrayOfInt);
   }
   
+  /*
+   *  Entry point, takes in the filename of the puzzle constraints
+   */
   public static void main(String[] paramArrayOfString)
   {
     try
@@ -61,6 +68,11 @@ public class KenKenPuzzleSolver
     KenKenPuzzleSolver localKenKenPuzzleSolver = new KenKenPuzzleSolver(paramArrayOfString);
   }
   
+  /*
+   * Parses the puzzle from the constraints of the cages in the text file with the format being
+   * [cage value] [operator] <list of cells in cage>
+   * Ex. 50 * 1 2 10 = cells 1, 2, and 10 should multiply together to make 50
+   */
   public void createCages(String[] paramArrayOfString)
     throws FileNotFoundException
   {
@@ -76,19 +88,19 @@ public class KenKenPuzzleSolver
       String[] arrayOfString = str.split(" ");
       switch (arrayOfString[1].charAt(0))
       {
-      case '.': 
+      case '.': // equals
         j = 0;
         break;
-      case '+': 
+      case '+': // addition
         j = 1;
         break;
-      case '-': 
+      case '-': // subtraction
         j = 2;
         break;
-      case '*': 
+      case '*': // multiplication
         j = 3;
         break;
-      case '/': 
+      case '/': // division
         j = 4;
       }
       this.cages.add(new Cage(Integer.parseInt(arrayOfString[0]), j));
@@ -105,6 +117,9 @@ public class KenKenPuzzleSolver
     localScanner.close();
   }
   
+  /*
+   * Create the cells in the puzzle
+   */
   private void createCells()
   {
     this.cells = new Cell[this.maxCell + 1];
@@ -113,6 +128,9 @@ public class KenKenPuzzleSolver
     }
   }
   
+  /*
+   * Create all the columns and assign it to all of its contained cells
+   */
   private void createColumns(int paramInt)
   {
     this.columns = new Column[paramInt];
@@ -125,6 +143,9 @@ public class KenKenPuzzleSolver
     }
   }
   
+  /*
+   * Create all the rows and assign it to all of its contained cells
+   */
   private void createRows(int paramInt)
   {
     this.rows = new Row[paramInt];
@@ -137,6 +158,9 @@ public class KenKenPuzzleSolver
     }
   }
   
+  /*
+   * Sort the cages and cages  by the number of cells in them (ease of solving)
+   */
   private void cellSort()
   {
     Collections.sort(this.cages, new Comparator()
@@ -166,6 +190,9 @@ public class KenKenPuzzleSolver
     }
   }
   
+  /*
+   * Generate the possibilities for the current cell 
+   */
   public int[] generatePossibles(int paramInt)
   {
     int[] arrayOfInt = new int[paramInt];
@@ -175,6 +202,9 @@ public class KenKenPuzzleSolver
     return arrayOfInt;
   }
   
+  /*
+   * Print out the solution of the puzzle into the out file
+   */
   public static void printSolution(int[] paramArrayOfInt)
   {
     for (int i = 0; i < paramArrayOfInt.length; i++)

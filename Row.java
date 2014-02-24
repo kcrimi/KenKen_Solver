@@ -1,9 +1,9 @@
 /*
- * This is the basic datastructure of the 
+ * This is the basic datastructure of rows in a kenken puzzle
  */
 public class Row
 {
-  int[] cells;
+  int[] cells; // array of cells contained in the row
   
   public Row(int paramInt1, int paramInt2)
   {
@@ -13,6 +13,9 @@ public class Row
     }
   }
   
+  /*
+   * checks if the number paramInt is not currently assigned to another cell in the row
+   */
   public boolean available(int paramInt, int[] paramArrayOfInt)
   {
     boolean bool = true;

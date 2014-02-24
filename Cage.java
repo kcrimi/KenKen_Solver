@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/*
+ * Datastructure of the cages in the kenken puzzle
+ */
 public class Cage
 {
   ArrayList<Integer> cells;
@@ -16,6 +19,9 @@ public class Cage
     this.operator = paramInt2;
   }
   
+  /*
+   * Calculates the current value of the cage
+   */
   public int currentValue(int[] paramArrayOfInt)
   {
     int i = 0;
@@ -28,6 +34,9 @@ public class Cage
     return i;
   }
   
+  /*
+   * Determines if the cage is completely filled
+   */
   public boolean isFilled(int[] paramArrayOfInt)
   {
     boolean bool = true;
@@ -43,6 +52,9 @@ public class Cage
     return bool;
   }
   
+  /*
+   * Determines whether the cage is correctly filled out
+   */
   public boolean goalSatisfied(int[] paramArrayOfInt)
   {
     int i = 0;
@@ -52,8 +64,8 @@ public class Cage
     int n;
     switch (this.operator)
     {
-    case 0: 
-    case 1: 
+    case 0:  // equals
+    case 1:  // addition
       i = 0;
       for (localIterator1 = this.cells.iterator(); localIterator1.hasNext();)
       {
@@ -62,12 +74,12 @@ public class Cage
         i += paramArrayOfInt[k];
       }
       break;
-    case 2: 
+    case 2:  // subtraction
       int j = Math.max(paramArrayOfInt[((Integer)this.cells.get(0)).intValue()], paramArrayOfInt[((Integer)this.cells.get(1)).intValue()]);
       k = Math.min(paramArrayOfInt[((Integer)this.cells.get(0)).intValue()], paramArrayOfInt[((Integer)this.cells.get(1)).intValue()]);
       i = j - k;
       break;
-    case 3: 
+    case 3:  // multiplication
       i = 1;
       for (localIterator2 = this.cells.iterator(); localIterator2.hasNext();)
       {
@@ -76,7 +88,7 @@ public class Cage
         i *= paramArrayOfInt[n];
       }
       break;
-    case 4: 
+    case 4:  // division
       int m = Math.max(paramArrayOfInt[((Integer)this.cells.get(0)).intValue()], paramArrayOfInt[((Integer)this.cells.get(1)).intValue()]);
       n = Math.min(paramArrayOfInt[((Integer)this.cells.get(0)).intValue()], paramArrayOfInt[((Integer)this.cells.get(1)).intValue()]);
       i = m / n;

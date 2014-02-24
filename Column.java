@@ -1,3 +1,6 @@
+/*
+ * This is the basic datastructure of columns in a kenken puzzle
+ */
 public class Column
 {
   int[] cells;
@@ -10,6 +13,9 @@ public class Column
     }
   }
   
+  /*
+   * checks if the number paramInt is not currently assigned to another cell in the column
+   */
   public boolean available(int paramInt, int[] paramArrayOfInt)
   {
     boolean bool = true;
