@@ -11,8 +11,9 @@ This program sorts the cages by ease of solving by the number of cells in each, 
 Input example
 +++++++++++++
 
+```  
 1 . 1
 2 + 2 3
 2 . 0
-
+````
 This input would define the puzzle of 2 x 2 squares with the op left cell equaling 2, the top right cell equalling 1 and the bottom cells adding up to 2.
